@@ -1,0 +1,105 @@
+@import "../../styles/variables";
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 2fr));
+  justify-items: center;
+  gap: 1em;
+
+  * {
+    user-select: none;
+    --webkit-user-drag: none;
+  }
+}
+
+.itemcontainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: $default-border-radius;
+  box-shadow: $sd-base-md;
+  overflow: hidden;
+  border: solid 1px $cl-orange-50;
+}
+
+.thumbnail {
+  width: stretch;
+  position: relative;
+  margin: 0 auto;
+  object-fit: cover;
+  z-index: -1;
+  min-height: 15em;
+}
+
+.name {
+  width: 15em;
+  margin: 1em auto;
+  padding: 0 1em;
+  text-align: center;
+  font-size: 1.25em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.infossandactionscontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto 0.5em 0.5em 1em;
+}
+
+.infos {
+  color: $cl-black-50;
+  font-weight: bolder;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  > div {
+    width: 2.5em;
+    height: 2.5em;
+    transition: translate 2s $eg-out-cubic, opacity 0.5s $eg-out-cubic;
+    cursor: pointer;
+    color: $cl-orange;
+    opacity: 0.5;
+
+    &:hover:not(.disabled) {
+      opacity: 1;
+      translate: 0 -0.25em;
+    }
+
+    &.disabled {
+      opacity: 0.1;
+    }
+  }
+}
+
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 10em;
+  font-family: "Merlod Norme";
+  background-color: $cl-black;
+  color: $cl-white;
+  opacity: 0;
+  transition: opacity 0.5s $eg-out-cubic;
+  z-index: 1;
+
+  &.active {
+    opacity: 0.4;
+  }
+}
