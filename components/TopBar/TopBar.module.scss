@@ -1,0 +1,59 @@
+@import "../../styles/variables";
+
+.container {
+  background: $cl-orange;
+  color: white;
+  text-shadow: $sd-base-sm;
+  box-shadow: $sd-base-md;
+  border: solid 1px $cl-black-10;
+}
+
+.itemscontainer {
+  max-width: $default-desktop-max-width;
+  margin: auto;
+  display: flex;
+  gap: 1em;
+  padding: 0.5em;
+}
+
+.item {
+  position: relative;
+  padding: 0.5em;
+  border-radius: $default-border-radius;
+  cursor: pointer;
+  color: $cl-white;
+
+  svg {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  &:hover {
+    background: $cl-white;
+    color: $cl-orange;
+  }
+}
+
+.totalprice {
+  position: absolute;
+  width: 0;
+  left: 50%;
+  translate: -50%;
+  bottom: -1em;
+  font-size: 0.75em;
+  padding: 0.15em 0.2em;
+  text-align: center;
+  opacity: 0;
+  background: $cl-white;
+  color: $cl-orange;
+  border: solid 1px $cl-orange;
+  border-radius: $default-border-radius;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: width 1s $eg-out-cubic;
+
+  &.active {
+    width: 100%;
+    opacity: 1;
+  }
+}
