@@ -53,7 +53,7 @@
   transition: width 1s $eg-out-cubic;
 
   &.active {
-    width: 100%;
+    width: fit-content;
     opacity: 1;
   }
 }
