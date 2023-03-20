@@ -1,0 +1,33 @@
+// Colors
+$cl-white: #eff0f4;
+$cl-white-50: rgba($cl-white, 0.5);
+$cl-white-10: rgba($cl-white, 0.1);
+$cl-orange: #fe6f46;
+$cl-orange-50: rgba(#fe6f46, 0.5);
+$cl-green: #00b300;
+$cl-red: #ff0000;
+$cl-black: #242527;
+$cl-black-50: rgba($cl-black, 0.5);
+$cl-black-10: rgba($cl-black, 0.1);
+
+// Shadows
+$sd-hard-black-lg: 3px 3px 0px $cl-black;
+$sd-hard-black-md: 2px 2px 0px $cl-black;
+$sd-hard-black-sm: 1px 1px 0px $cl-black;
+$sd-hard-white-sm: 1px 1px 0px $cl-white;
+$sd-base-xl: 2px 8px 40px rgba($cl-black, 0.2);
+$sd-base-lg: 2px 8px 20px rgba($cl-black, 0.2);
+$sd-base-md: 0px 8px 10px rgba($cl-black, 0.2);
+$sd-base-sm: 1px 1px 2px rgba($cl-black, 0.2);
+
+// Breakpoints
+$ss-mobile: 480px;
+$ss-tablet: 768px;
+$ss-desktop: 1024px;
+
+// Easings
+$eg-out-cubic: cubic-bezier(0.08, 0.04, 0, 1);
+
+// Else
+$default-border-radius: 0.5em;
+$default-desktop-max-width: 1280px;
