@@ -1,0 +1,50 @@
+@import "../../styles/variables";
+
+.container {
+  width: 100%;
+  height: 2em;
+  margin: auto;
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  padding: 0 1em;
+  color: $cl-black;
+  border-radius: $default-border-radius;
+  border: solid 1px $cl-black-10;
+  transition: outline 0.5s $eg-out-cubic;
+  outline: solid 1px transparent;
+  outline-offset: -3px;
+
+  &:focus {
+    outline: solid 1px $cl-black-50;
+  }
+}
+
+.results {
+  position: absolute;
+  top: 2.5em;
+  border-radius: $default-border-radius;
+  background: $cl-black-50;
+  box-shadow: $sd-base-md;
+  backdrop-filter: blur(0.5em);
+  z-index: 5;
+  overflow: hidden;
+}
+
+.result {
+  width: 100%;
+  padding: 0.2em 0.5em;
+  text-shadow: $sd-hard-black-md;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $cl-black;
+  }
+
+  &:not(:last-child) {
+    border-bottom: solid 1px $cl-white-50;
+  }
+}
