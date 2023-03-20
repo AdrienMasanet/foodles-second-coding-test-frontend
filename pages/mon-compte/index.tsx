@@ -22,6 +22,7 @@ export default function AccountPage() {
       </Head>
       <main>
         <h1 className="text-center text-orange">Mon compte</h1>
+        <hr />
         <section>{loggedInClient && <ClientInformations client={loggedInClient} />}</section>
       </main>
     </>
