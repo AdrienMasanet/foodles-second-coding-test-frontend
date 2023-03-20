@@ -1,0 +1,76 @@
+@import "./variables.scss";
+
+/* Fonts configuration */
+@font-face {
+  font-family: "Merlod Norme";
+  src: url("/fonts/MerlodNorme.otf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto.ttf");
+}
+
+/* Global styling */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Roboto";
+}
+
+main {
+  max-width: $default-desktop-max-width;
+  margin: 2em auto auto auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Merlod Norme";
+}
+
+h1 {
+  font-size: 3.5em;
+  margin: 1em 0;
+}
+
+h2 {
+  font-size: 2.5em;
+  margin: 0.5em 0;
+}
+
+a {
+  color: $cl-black;
+}
+
+hr {
+  width: 80%;
+  height: 2px;
+  background-color: $cl-orange-50;
+  border: none;
+  margin: 2em auto;
+}
+
+/* Custom classes */
+.text-center {
+  text-align: center;
+}
+
+.text-orange {
+  color: $cl-orange;
+}
+
+.text-white {
+  color: $cl-white;
+}
+
+.text-black {
+  color: $cl-black;
+}
