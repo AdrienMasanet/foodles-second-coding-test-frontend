@@ -23,8 +23,8 @@ const ClientSwitcher = () => {
       return;
     }
 
-    // Filter clients by email to set the results state, lowercase both strings to avoid case sensitivity
-    setClientsSearchResults(clients.filter((client) => client.email.toLowerCase().includes(search.toLowerCase())));
+    // Filter clients by name and email to set the results state, lowercase both strings to avoid case sensitivity
+    setClientsSearchResults(clients.filter((client) => client.email.toLowerCase().includes(search.toLowerCase()) || client.name.toLowerCase().includes(search.toLowerCase())));
   };
 
   /* Avoid cumulating onClick listeners by using event delegation and handle the click outside of the component
@@ -62,18 +62,18 @@ const ClientSwitcher = () => {
   // If a client is logged in, set the default select value of the input field to the logged in client
   useEffect(() => {
     if (loggedInClient) {
-      inputFieldRef.current!.value = loggedInClient.email + " " + loggedInClient.credits + " €";
+      inputFieldRef.current!.value = loggedInClient.name + " | " + loggedInClient.email + " | " + loggedInClient.credits + " €";
     }
   }, [loggedInClient]);
 
   return (
     <div className={styles.container}>
-      <input className={styles.input} type="text" ref={inputFieldRef} placeholder="Choisissez un compte client" autoComplete="false" defaultValue={loggedInClient ? loggedInClient.email + " " + loggedInClient.credits + " €" : ""} onChange={searchClient} />
+      <input className={styles.input} type="text" ref={inputFieldRef} placeholder="Choisissez un compte client" autoComplete="false" defaultValue={loggedInClient ? loggedInClient.name + " | " + loggedInClient.email + " | " + loggedInClient.credits + " €" : ""} onChange={searchClient} />
       <div className={styles.results}>
         {clientsSearchResults &&
           clientsSearchResults.map((client) => (
             <div key={client.id} className={styles.result} data-client-id={client.id}>
-              {client.email} {client.credits}€
+              {client.name} | {client.email} | {client.credits}€
             </div>
           ))}
         {clientsSearchResults && clientsSearchResults.length === 0 && <div className={`${styles.result} ${styles.disabled}`}>Aucun résultat</div>}
