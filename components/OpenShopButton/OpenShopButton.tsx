@@ -14,7 +14,7 @@ const OpenShopButton = () => {
     <div className={styles.container}>
       {loggedInClient ? (
         <>
-          Bonjour {loggedInClient.email} !
+          Bonjour {loggedInClient.name} !
           <br />
           Il reste {loggedInClient.credits}€ sur votre compte.
           <Link href="/commander">
