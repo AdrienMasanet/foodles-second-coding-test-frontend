@@ -76,6 +76,7 @@ const ClientSwitcher = () => {
               {client.email} {client.credits}€
             </div>
           ))}
+        {clientsSearchResults && clientsSearchResults.length === 0 && <div className={`${styles.result} ${styles.disabled}`}>Aucun résultat</div>}
       </div>
     </div>
   );

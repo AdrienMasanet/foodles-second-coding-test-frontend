@@ -40,7 +40,11 @@
   text-shadow: $sd-hard-black-md;
   cursor: pointer;
 
-  &:hover {
+  &.disabled {
+    cursor: default;
+  }
+
+  &:hover:not(.disabled) {
     background-color: $cl-black;
   }
 
