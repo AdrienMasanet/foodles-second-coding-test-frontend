@@ -5,6 +5,7 @@ import getClients from "@/services/clients/getClients";
 import loginClient from "@/services/clients/loginClient";
 import { useState, useEffect, useContext, useRef, useCallback } from "react";
 import { AuthenticationContext, AuthenticationUpdateContext } from "@/context/AuthenticationContext";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 /**
  * Displays a dropdown list of available clients and logs in the selected client.
@@ -13,13 +14,17 @@ const ClientSwitcher = () => {
   const loggedInClient = useContext(AuthenticationContext);
   const { login, logout } = useContext(AuthenticationUpdateContext);
   const inputFieldRef = useRef<HTMLInputElement>(null);
+  const arrowButtonRef = useRef<HTMLInputElement>(null);
   const [clients, setClients] = useState<Client[]>([]);
   const [clientsSearchResults, setClientsSearchResults] = useState<Client[] | null>(null);
 
+  // Search clients by name or email in the clients state which is set at first render and contains all available clients
   const searchClient = (event: React.ChangeEvent<HTMLInputElement>) => {
     const search = event.target.value;
+
+    // If the search input is empty, set the results state to the clients state to display all available clients
     if (!search) {
-      setClientsSearchResults(null);
+      setClientsSearchResults(clients);
       return;
     }
 
@@ -31,8 +36,10 @@ const ClientSwitcher = () => {
    * Use the useCallback hook to avoid triggering the useEffect hook just below this function on every render */
   const selectClient = useCallback(
     (event: MouseEvent) => {
-      setClientsSearchResults(null);
+      if (event.target !== inputFieldRef.current) setClientsSearchResults(null);
+
       const clientId = (event.target as HTMLDivElement).getAttribute("data-client-id");
+
       if (!clientId) return;
 
       loginClient(clientId).then((client) => {
@@ -50,7 +57,7 @@ const ClientSwitcher = () => {
     };
   }, [selectClient]);
 
-  // At first render, fetch available clients
+  // At first render, fetch available clients and store them in the clients state
   useEffect(() => {
     const fetchClients = async () => {
       const clients = await getClients();
@@ -68,7 +75,17 @@ const ClientSwitcher = () => {
 
   return (
     <div className={styles.container}>
-      <input className={styles.input} type="text" ref={inputFieldRef} placeholder="Choisissez un compte client" autoComplete="false" defaultValue={loggedInClient ? loggedInClient.name + " | " + loggedInClient.email + " | " + loggedInClient.credits + " €" : ""} onChange={searchClient} />
+      <div className={styles.input}>
+        <input type="text" ref={inputFieldRef} placeholder="Choisissez un compte client" autoComplete="false" defaultValue={loggedInClient ? loggedInClient.name + " | " + loggedInClient.email + " | " + loggedInClient.credits + " €" : ""} onChange={searchClient} />
+        <div className={styles.arrowbutton} ref={arrowButtonRef} title="Afficher tous les clients disponibles">
+          <ChevronDownIcon
+            onClick={(event) => {
+              event.stopPropagation(); // Avoid triggering the click event listener on the document which would close the dropdown list
+              setClientsSearchResults(clientsSearchResults ? null : clients); // Toggle the dropdown list
+            }}
+          />
+        </div>
+      </div>
       <div className={styles.results}>
         {clientsSearchResults &&
           clientsSearchResults.map((client) => (

@@ -10,16 +10,52 @@
 .input {
   width: 100%;
   height: 100%;
-  padding: 0 1em;
-  color: $cl-black;
   border-radius: $default-border-radius;
-  border: solid 1px $cl-black-10;
-  transition: outline 0.5s $eg-out-cubic;
-  outline: solid 1px transparent;
-  outline-offset: -3px;
+
+  input {
+    width: 100%;
+    height: 100%;
+    padding: 0 1em;
+    color: $cl-black;
+    border-radius: $default-border-radius;
+    border: solid 1px $cl-black-10;
+    transition: outline 0.5s $eg-out-cubic;
+    outline: solid 1px transparent;
+    outline-offset: -3px;
+  }
 
   &:focus {
     outline: solid 1px $cl-black-50;
+  }
+
+  .arrowbutton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2em;
+    height: 100%;
+    border: solid 1px transparent;
+    color: $cl-orange;
+    cursor: pointer;
+    transition: background 0.75s $eg-out-cubic, box-shadow 1.5s $eg-out-cubic;
+
+    &:hover {
+      background: $cl-orange;
+      color: $cl-white;
+      box-shadow: $sd-base-md;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      border-left: 0.5em solid transparent;
+      border-right: 0.5em solid transparent;
+      border-top: 0.5em solid $cl-black;
+    }
   }
 }
 
