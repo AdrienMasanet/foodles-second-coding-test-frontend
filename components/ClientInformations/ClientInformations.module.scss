@@ -1,0 +1,35 @@
+@import "../../styles/variables";
+
+.container {
+  width: fit-content;
+  max-width: 90%;
+  margin: auto;
+  background: $cl-orange;
+  color: $cl-white;
+  padding: 1.5rem;
+  border-radius: $default-border-radius;
+  box-shadow: $sd-base-sm;
+  font-family: "Merlod Norme";
+  text-align: right;
+
+  p {
+    white-space: nowrap;
+    font-size: 1.5rem;
+
+    span {
+      float: left;
+      margin-right: 10em;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    @media (max-width: $ss-mobile) {
+      white-space: pre-wrap;
+      font-size: 1rem;
+
+      span {
+        margin-right: 0;
+      }
+    }
+  }
+}
