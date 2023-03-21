@@ -3,6 +3,7 @@ import checkoutCart from "@/services/cart/checkoutCart";
 import useAuthentication from "@/hooks/useAuthentication";
 import useCart from "@/hooks/useCart";
 import useClientList from "@/hooks/useClientList";
+import useProductList from "@/hooks/useProductList";
 import { HomeIcon, UserIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
 import TopBarTotalPrice from "./TopBarTotalPrice";
 import TopBarButton from "./TopBarButton";
@@ -16,6 +17,7 @@ import ClientSwitcher from "@/components/ClientSwitcher/ClientSwitcher";
  */
 const TopBar = () => {
   const { refreshClientList } = useClientList();
+  const { refreshProductList } = useProductList();
   const { loggedInClient, setNewCreditsAmount } = useAuthentication();
   const { cart, resetCart } = useCart();
 
@@ -25,6 +27,7 @@ const TopBar = () => {
         resetCart();
         setNewCreditsAmount(loggedInClientNewCreditsAmount);
         refreshClientList();
+        refreshProductList();
       })
       .catch((error) => {
         alert(error);
