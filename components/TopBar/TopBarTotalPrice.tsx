@@ -1,9 +1,8 @@
 import styles from "./TopBar.module.scss";
-import { useContext, useState, useEffect } from "react";
-import { CartPriceContext } from "@/context/CartContext";
+import useCart from "@/hooks/useCart";
 
 const TopBarTotalPrice = () => {
-  const price = useContext(CartPriceContext);
+  const { price } = useCart();
 
   return <div className={`${styles.totalprice} ${price > 0 ? styles.active : ""}`}>{price} €</div>;
 };

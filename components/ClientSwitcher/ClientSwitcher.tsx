@@ -3,16 +3,15 @@ import Client from "@/interfaces/Client";
 import ConnectedClient from "@/interfaces/ConnectedClient";
 import getClients from "@/services/clients/getClients";
 import loginClient from "@/services/clients/loginClient";
-import { useState, useEffect, useContext, useRef, useCallback } from "react";
-import { AuthenticationContext, AuthenticationUpdateContext } from "@/context/AuthenticationContext";
+import { useState, useEffect, useRef, useCallback } from "react";
+import useAuthentication from "@/hooks/useAuthentication";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 /**
  * Displays a dropdown list of available clients and logs in the selected client.
  */
 const ClientSwitcher = () => {
-  const loggedInClient = useContext(AuthenticationContext);
-  const { login, logout } = useContext(AuthenticationUpdateContext);
+  const { loggedInClient, login } = useAuthentication();
   const inputFieldRef = useRef<HTMLInputElement>(null);
   const arrowButtonRef = useRef<HTMLInputElement>(null);
   const [clients, setClients] = useState<Client[]>([]);

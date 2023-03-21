@@ -1,9 +1,9 @@
-import Image from "next/image";
-import Product from "@/interfaces/Product";
 import styles from "./ProductList.module.scss";
+import Product from "@/interfaces/Product";
+import { useState, useEffect } from "react";
+import useCart from "@/hooks/useCart";
 import { MinusCircleIcon, PlusCircleIcon, InboxArrowDownIcon } from "@heroicons/react/24/solid";
-import { useState, useEffect, useContext } from "react";
-import { CartContext, CartUpdateContext } from "@/context/CartContext";
+import Image from "next/image";
 
 type ProductListItemProps = {
   product: Product;
@@ -13,8 +13,7 @@ type ProductListItemProps = {
  * Displays an buyable item while displaying its name, price and image.
  */
 const ProductListItem = ({ product }: ProductListItemProps) => {
-  const cart = useContext(CartContext);
-  const { addProduct, substractProduct, resetCart } = useContext(CartUpdateContext);
+  const { cart, addProduct, substractProduct } = useCart();
   const [quantity, setQuantity] = useState(0);
 
   // On cart context update, set the quantity to the actual quantity of the product in the cart

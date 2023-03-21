@@ -1,11 +1,11 @@
 import Head from "next/head";
 import ClientInformations from "@/components/ClientInformations/ClientInformations";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { AuthenticationContext } from "@/context/AuthenticationContext";
+import useAuthentication from "@/hooks/useAuthentication";
 
 export default function AccountPage() {
-  const loggedInClient = useContext(AuthenticationContext);
+  const { loggedInClient } = useAuthentication();
   const router = useRouter();
 
   // If the user is not logged in, do not display the page and redirect to the home page.

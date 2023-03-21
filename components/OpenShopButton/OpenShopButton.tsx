@@ -1,14 +1,13 @@
 import styles from "./OpenShopButton.module.scss";
+import useAuthentication from "@/hooks/useAuthentication";
 import Link from "next/link";
-import { useContext } from "react";
-import { AuthenticationContext } from "@/context/AuthenticationContext";
 
 /**
  * Displays a button to open the shop if a client is logged in.
  * If no client is logged in, displays an information message on how to log in.
  */
 const OpenShopButton = () => {
-  const loggedInClient = useContext(AuthenticationContext);
+  const { loggedInClient } = useAuthentication();
 
   return (
     <div className={styles.container}>

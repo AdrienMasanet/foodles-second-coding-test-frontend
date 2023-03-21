@@ -1,18 +1,17 @@
-import Head from "next/head";
-import Image from "next/image";
 import Product from "@/interfaces/Product";
 import getProducts from "@/services/products/getProducts";
-import ProductList from "@/components/ProductList/ProductList";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { AuthenticationContext } from "@/context/AuthenticationContext";
+import useAuthentication from "@/hooks/useAuthentication";
+import Head from "next/head";
+import ProductList from "@/components/ProductList/ProductList";
 
 type ShopPageProps = {
   products: Product[];
 };
 
 export default function ShopPage({ products }: ShopPageProps) {
-  const loggedInClient = useContext(AuthenticationContext);
+  const { loggedInClient } = useAuthentication();
   const router = useRouter();
 
   useEffect(() => {
