@@ -94,3 +94,8 @@ hr {
 .align-center {
   align-items: center;
 }
+
+.no-select {
+  user-select: none;
+  -webkit-user-drag: none;
+}
