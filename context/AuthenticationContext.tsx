@@ -6,6 +6,7 @@ export const AuthenticationContext = createContext<ConnectedClient | null>(null)
 export const AuthenticationUpdateContext = createContext({
   login: (loggedInClient: ConnectedClient): void => {},
   logout: (): void => {},
+  setNewCreditsAmount: (newAmount: number): void => {},
 });
 
 /**
@@ -22,6 +23,13 @@ export const AuthenticationProvider = ({ children }: { children: React.ReactNode
     setUser(null);
   };
 
+  // Change the credits amount of the current logged in client
+  const setNewCreditsAmount = (newAmount: number) => {
+    if (loggedInClient) {
+      setUser({ ...loggedInClient, credits: newAmount });
+    }
+  };
+
   useEffect(() => {
     const fetchUser = async () => {
       const loggedInClient = await getLoggedInClient();
@@ -32,7 +40,7 @@ export const AuthenticationProvider = ({ children }: { children: React.ReactNode
 
   return (
     <AuthenticationContext.Provider value={loggedInClient}>
-      <AuthenticationUpdateContext.Provider value={{ login, logout }}>{children}</AuthenticationUpdateContext.Provider>
+      <AuthenticationUpdateContext.Provider value={{ login, logout, setNewCreditsAmount }}>{children}</AuthenticationUpdateContext.Provider>
     </AuthenticationContext.Provider>
   );
 };

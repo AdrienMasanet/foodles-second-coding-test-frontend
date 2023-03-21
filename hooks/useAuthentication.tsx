@@ -3,9 +3,9 @@ import { AuthenticationContext, AuthenticationUpdateContext } from "../context/A
 
 const useAuthentication = () => {
   const loggedInClient = useContext(AuthenticationContext);
-  const { login, logout } = useContext(AuthenticationUpdateContext);
+  const { login, logout, setNewCreditsAmount } = useContext(AuthenticationUpdateContext);
 
-  return { loggedInClient, login, logout };
+  return { loggedInClient, login, logout, setNewCreditsAmount };
 };
 
 export default useAuthentication;
