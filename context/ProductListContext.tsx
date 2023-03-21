@@ -16,7 +16,6 @@ export const ProductListProvider = ({ children }: { children: React.ReactNode })
 
   const refreshProductList = async () => {
     const refreshedProducts = await getProducts();
-    console.log("OKOKOK", refreshedProducts);
     setProductList(refreshedProducts);
   };
 
