@@ -14,8 +14,19 @@ import ClientSwitcher from "@/components/ClientSwitcher/ClientSwitcher";
  * If the cart is not empty, display the cart menu item with the total price.
  */
 const TopBar = () => {
-  const { loggedInClient } = useAuthentication();
-  const { cart } = useCart();
+  const { loggedInClient, setNewCreditsAmount } = useAuthentication();
+  const { cart, resetCart } = useCart();
+
+  const proceedToCheckout = () => {
+    checkoutCart(cart)
+      .then((loggedInClientNewCreditsAmount) => {
+        resetCart();
+        setNewCreditsAmount(loggedInClientNewCreditsAmount);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
 
   return (
     <div className={styles.container}>
@@ -26,7 +37,7 @@ const TopBar = () => {
           <>
             <TopBarButton icon={<UserIcon />} link="/mon-compte" active={loggedInClient !== null} />
             {cart.length > 0 && (
-              <TopBarButton icon={<ShoppingCartIcon />} clickCallback={() => checkoutCart(cart)} active>
+              <TopBarButton icon={<ShoppingCartIcon />} clickCallback={proceedToCheckout} active>
                 <TopBarTotalPrice />
               </TopBarButton>
             )}
