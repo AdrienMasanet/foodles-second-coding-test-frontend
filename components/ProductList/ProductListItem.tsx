@@ -45,7 +45,7 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
               <MinusCircleIcon />
             </div>
           )}
-          <div className={`${quantity >= product.stock ? styles.disabled : ""}`} onClick={() => addProduct(product)}>
+          <div className={`${quantity >= product.stock ? styles.disabled : ""}`} onClick={() => quantity < product.stock && addProduct(product)}>
             {quantity > 0 ? <PlusCircleIcon /> : <InboxArrowDownIcon />}
           </div>
         </div>
