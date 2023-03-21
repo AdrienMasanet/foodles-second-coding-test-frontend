@@ -4,7 +4,7 @@ import getLoggedInClient from "@/services/clients/getLoggedInClient";
 
 export const AuthenticationContext = createContext<ConnectedClient | null>(null);
 export const AuthenticationUpdateContext = createContext({
-  login: (user: ConnectedClient): void => {},
+  login: (loggedInClient: ConnectedClient): void => {},
   logout: (): void => {},
 });
 
@@ -12,10 +12,10 @@ export const AuthenticationUpdateContext = createContext({
  * Context provider for the authentication state.
  */
 export const AuthenticationProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<ConnectedClient | null>(null);
+  const [loggedInClient, setUser] = useState<ConnectedClient | null>(null);
 
-  const login = (user: ConnectedClient) => {
-    setUser(user);
+  const login = (loggedInClient: ConnectedClient) => {
+    setUser(loggedInClient);
   };
 
   const logout = () => {
@@ -24,14 +24,14 @@ export const AuthenticationProvider = ({ children }: { children: React.ReactNode
 
   useEffect(() => {
     const fetchUser = async () => {
-      const user = await getLoggedInClient();
-      setUser(user);
+      const loggedInClient = await getLoggedInClient();
+      setUser(loggedInClient);
     };
     fetchUser();
   }, []);
 
   return (
-    <AuthenticationContext.Provider value={user}>
+    <AuthenticationContext.Provider value={loggedInClient}>
       <AuthenticationUpdateContext.Provider value={{ login, logout }}>{children}</AuthenticationUpdateContext.Provider>
     </AuthenticationContext.Provider>
   );
