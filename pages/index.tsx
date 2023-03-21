@@ -12,7 +12,7 @@ export default function HomePage() {
       </Head>
       <main>
         <div className="w-full flex justify-center align-center">
-          <Image src={logoImage} alt="Logo de Foodles" width={200} height={200} />
+          <Image className="no-select" src={logoImage} alt="Logo de Foodles" width={200} height={200} />
         </div>
         <section>
           <OpenShopButton />
