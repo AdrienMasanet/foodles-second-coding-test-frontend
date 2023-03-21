@@ -22,10 +22,6 @@ export const ClientListProvider = ({ children }: { children: React.ReactNode }) 
     refreshClientList();
   }, []);
 
-  useEffect(() => {
-    console.log(clientList);
-  }, [clientList]);
-
   return (
     <ClientListContext.Provider value={clientList}>
       <ClientListUpdateContext.Provider value={{ refreshClientList }}>{children}</ClientListUpdateContext.Provider>

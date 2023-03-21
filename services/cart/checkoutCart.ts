@@ -16,7 +16,6 @@ export async function checkoutCart(cart: { [key: string]: number }) {
       }
     })
     .then((data) => {
-      console.log(data.clientNewCreditsAmount);
       return data.clientNewCreditsAmount;
     });
 }
