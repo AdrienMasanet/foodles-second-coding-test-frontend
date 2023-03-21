@@ -15,8 +15,8 @@ export const ClientListProvider = ({ children }: { children: React.ReactNode }) 
   const [clientList, setClientList] = useState<Client[]>([]);
 
   const refreshClientList = async () => {
-    const clients = await getClients();
-    setClientList(clients);
+    const refreshedClients = await getClients();
+    setClientList(refreshedClients);
   };
 
   useEffect(() => {
