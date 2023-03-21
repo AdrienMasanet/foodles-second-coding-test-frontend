@@ -12,6 +12,8 @@ export const CartUpdateContext = createContext({
 /**
  * Context provider for the cart state, with the product ID as key and the quantity as value.
  * Price is updated when a product is added or removed from the cart.
+ * The addProduct function is used to add a product to the cart, and the subtractProduct function is used to remove a product from the cart.
+ * The resetCart function is used to reset the cart state to an empty object, it basically clears the cart.
  */
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<{ [key: string]: number }>({});

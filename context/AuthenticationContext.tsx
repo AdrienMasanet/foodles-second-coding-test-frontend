@@ -11,6 +11,9 @@ export const AuthenticationUpdateContext = createContext({
 
 /**
  * Context provider for the authentication state.
+ * login function is used to set the current logged in client by calling the API which returns the client's data and a HTTPOnly cookie containing the session ID.
+ * logout function is used to remove the current logged in client state (It currently doesn't remove the session ID cookie as the API doesn't support it yet).
+ * setNewCreditsAmount function is used to change the credits amount of the current logged in client
  */
 export const AuthenticationProvider = ({ children }: { children: React.ReactNode }) => {
   const [loggedInClient, setUser] = useState<ConnectedClient | null>(null);
