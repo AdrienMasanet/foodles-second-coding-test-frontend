@@ -13,15 +13,15 @@ type ProductListItemProps = {
  * Displays an buyable item while displaying its name, price and image.
  */
 const ProductListItem = ({ product }: ProductListItemProps) => {
-  const { cart, addProduct, substractProduct } = useCart();
+  const { cart, addProduct, subtractProduct } = useCart();
   const [quantity, setQuantity] = useState(0);
 
   // On cart context update, set the quantity to the actual quantity of the product in the cart
   useEffect(() => {
-    const cartProduct = cart.find((cartProduct) => cartProduct.id === product.id);
+    const cartProduct = cart[product.id];
 
     if (cartProduct) {
-      setQuantity(cartProduct.quantity);
+      setQuantity(cartProduct);
     } else {
       setQuantity(0);
     }
@@ -41,7 +41,7 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
         </div>
         <div className={styles.buttons}>
           {quantity > 0 && (
-            <div onClick={() => substractProduct(product)}>
+            <div onClick={() => subtractProduct(product)}>
               <MinusCircleIcon />
             </div>
           )}

@@ -36,7 +36,7 @@ const TopBar = () => {
         {loggedInClient && (
           <>
             <TopBarButton icon={<UserIcon />} link="/mon-compte" active={loggedInClient !== null} />
-            {cart.length > 0 && (
+            {Object.keys(cart).length > 0 && (
               <TopBarButton icon={<ShoppingCartIcon />} clickCallback={proceedToCheckout} active>
                 <TopBarTotalPrice />
               </TopBarButton>

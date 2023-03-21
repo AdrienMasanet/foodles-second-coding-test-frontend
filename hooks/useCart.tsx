@@ -4,9 +4,9 @@ import { CartContext, CartPriceContext, CartUpdateContext } from "../context/Car
 const useCart = () => {
   const cart = useContext(CartContext);
   const price = useContext(CartPriceContext);
-  const { addProduct, substractProduct, resetCart } = useContext(CartUpdateContext);
+  const { addProduct, subtractProduct, resetCart } = useContext(CartUpdateContext);
 
-  return { cart, price, addProduct, substractProduct, resetCart };
+  return { cart, price, addProduct, subtractProduct, resetCart };
 };
 
 export default useCart;

@@ -1,20 +1,12 @@
-import CartProduct from "@/interfaces/CartProduct";
-
-export async function checkoutCart(cart: CartProduct[]) {
-  // Create a JSON object that is an array of objects, each object containing the product ID and quantity.
-  const productsJson: { [key: string]: number } = {};
-  cart.forEach((product) => {
-    productsJson[product.id] = product.quantity;
-  });
-
-  // Send the JSON object to the API.
+export async function checkoutCart(cart: { [key: string]: number }) {
+  // Send the cart dictionnary as JSON object to the API.
   return fetch(process.env.NEXT_PUBLIC_API_URL + "orders/new", {
     method: "POST",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(productsJson),
+    body: JSON.stringify(cart),
   })
     .then((response) => {
       if (response.status === 200) {
