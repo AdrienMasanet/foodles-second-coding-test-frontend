@@ -9,7 +9,7 @@ export const ClientListUpdateContext = createContext({
 
 /**
  * Context provider for the client list state.
- * The refreshClientList function is used to refresh the client list by calling the API
+ * The refreshClientList function is used to refresh the client list by calling the API.
  */
 export const ClientListProvider = ({ children }: { children: React.ReactNode }) => {
   const [clientList, setClientList] = useState<Client[]>([]);
