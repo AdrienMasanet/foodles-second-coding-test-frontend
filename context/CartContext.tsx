@@ -60,6 +60,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const resetCart = () => {
+    setPrice(0);
     setCart([]);
   };
 
