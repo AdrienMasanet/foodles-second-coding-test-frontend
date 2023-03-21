@@ -5,6 +5,7 @@ import TopBar from "@/components/TopBar/TopBar";
 import { AuthenticationProvider } from "@/context/AuthenticationContext";
 import { CartProvider } from "@/context/CartContext";
 import { ClientListProvider } from "@/context/ClientListContext";
+import { ProductListProvider } from "@/context/ProductListContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   // This is a workaround for the self-signed certificate issue in development
@@ -23,8 +24,10 @@ export default function App({ Component, pageProps }: AppProps) {
       <AuthenticationProvider>
         <CartProvider>
           <ClientListProvider>
-            <TopBar />
-            <Component {...pageProps} />
+            <ProductListProvider>
+              <TopBar />
+              <Component {...pageProps} />
+            </ProductListProvider>
           </ClientListProvider>
         </CartProvider>
       </AuthenticationProvider>
