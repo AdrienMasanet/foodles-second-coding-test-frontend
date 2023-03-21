@@ -5,6 +5,7 @@ import getClients from "@/services/clients/getClients";
 import loginClient from "@/services/clients/loginClient";
 import { useState, useEffect, useRef, useCallback } from "react";
 import useAuthentication from "@/hooks/useAuthentication";
+import useCart from "@/hooks/useCart";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 /**
@@ -12,6 +13,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/solid";
  */
 const ClientSwitcher = () => {
   const { loggedInClient, login } = useAuthentication();
+  const { resetCart } = useCart();
   const inputFieldRef = useRef<HTMLInputElement>(null);
   const arrowButtonRef = useRef<HTMLInputElement>(null);
   const [clients, setClients] = useState<Client[]>([]);
@@ -41,11 +43,15 @@ const ClientSwitcher = () => {
 
       if (!clientId) return;
 
+      /* Call the API to assign the HTTPOnly cookie to the browser
+       * then set the AuthenticationContext to the logged in client returned by the API
+       * and don't forget to reset the cart (new client logged in = new blank cart) */
       loginClient(clientId).then((client) => {
         login(client as ConnectedClient);
+        resetCart();
       });
     },
-    [login]
+    [login, resetCart]
   );
 
   // Handle click event globally in the document to be able to close the dropdown list if the user clicks outside of it
