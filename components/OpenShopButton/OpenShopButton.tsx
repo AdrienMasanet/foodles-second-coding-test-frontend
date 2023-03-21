@@ -15,11 +15,17 @@ const OpenShopButton = () => {
         <>
           Bonjour {loggedInClient.name} !
           <br />
-          Il reste {loggedInClient.credits}€ sur votre compte.
-          <Link href="/commander">
-            <br />
-            Cliquez ici pour faire quelques courses !
-          </Link>
+          {loggedInClient.credits > 0 ? (
+            <>
+              Il reste {loggedInClient.credits}€ sur votre compte.
+              <Link href="/commander">
+                <br />
+                Cliquez ici pour faire quelques courses !
+              </Link>
+            </>
+          ) : (
+            <>Vous n&apos;avez plus de crédits...</>
+          )}
         </>
       ) : (
         <p className={styles.info}>Veuillez sélectionner un compte client avant d&apos;aller vous servir !</p>
