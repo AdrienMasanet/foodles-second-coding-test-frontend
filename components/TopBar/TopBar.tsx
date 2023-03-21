@@ -2,6 +2,7 @@ import styles from "./TopBar.module.scss";
 import checkoutCart from "@/services/cart/checkoutCart";
 import useAuthentication from "@/hooks/useAuthentication";
 import useCart from "@/hooks/useCart";
+import useClientList from "@/hooks/useClientList";
 import { HomeIcon, UserIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
 import TopBarTotalPrice from "./TopBarTotalPrice";
 import TopBarButton from "./TopBarButton";
@@ -14,6 +15,7 @@ import ClientSwitcher from "@/components/ClientSwitcher/ClientSwitcher";
  * If the cart is not empty, display the cart menu item with the total price.
  */
 const TopBar = () => {
+  const { refreshClientList } = useClientList();
   const { loggedInClient, setNewCreditsAmount } = useAuthentication();
   const { cart, resetCart } = useCart();
 
@@ -22,6 +24,7 @@ const TopBar = () => {
       .then((loggedInClientNewCreditsAmount) => {
         resetCart();
         setNewCreditsAmount(loggedInClientNewCreditsAmount);
+        refreshClientList();
       })
       .catch((error) => {
         alert(error);

@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import TopBar from "@/components/TopBar/TopBar";
 import { AuthenticationProvider } from "@/context/AuthenticationContext";
 import { CartProvider } from "@/context/CartContext";
+import { ClientListProvider } from "@/context/ClientListContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   // This is a workaround for the self-signed certificate issue in development
@@ -21,8 +22,10 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <AuthenticationProvider>
         <CartProvider>
-          <TopBar />
-          <Component {...pageProps} />
+          <ClientListProvider>
+            <TopBar />
+            <Component {...pageProps} />
+          </ClientListProvider>
         </CartProvider>
       </AuthenticationProvider>
     </>

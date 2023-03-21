@@ -1,9 +1,9 @@
 import styles from "./ClientSwitcher.module.scss";
 import Client from "@/interfaces/Client";
 import ConnectedClient from "@/interfaces/ConnectedClient";
-import getClients from "@/services/clients/getClients";
 import loginClient from "@/services/clients/loginClient";
 import { useState, useEffect, useRef, useCallback } from "react";
+import useClientList from "@/hooks/useClientList";
 import useAuthentication from "@/hooks/useAuthentication";
 import useCart from "@/hooks/useCart";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
@@ -12,11 +12,11 @@ import { ChevronDownIcon } from "@heroicons/react/24/solid";
  * Displays a dropdown list of available clients and logs in the selected client.
  */
 const ClientSwitcher = () => {
+  const { clientList } = useClientList();
   const { loggedInClient, login } = useAuthentication();
   const { resetCart } = useCart();
   const inputFieldRef = useRef<HTMLInputElement>(null);
   const arrowButtonRef = useRef<HTMLInputElement>(null);
-  const [clients, setClients] = useState<Client[]>([]);
   const [clientsSearchResults, setClientsSearchResults] = useState<Client[] | null>(null);
 
   // Search clients by name or email in the clients state which is set at first render and contains all available clients
@@ -25,12 +25,12 @@ const ClientSwitcher = () => {
 
     // If the search input is empty, set the results state to the clients state to display all available clients
     if (!search) {
-      setClientsSearchResults(clients);
+      setClientsSearchResults(clientList);
       return;
     }
 
     // Filter clients by name and email to set the results state, lowercase both strings to avoid case sensitivity
-    setClientsSearchResults(clients.filter((client) => client.email.toLowerCase().includes(search.toLowerCase()) || client.name.toLowerCase().includes(search.toLowerCase())));
+    setClientsSearchResults(clientList.filter((client) => client.email.toLowerCase().includes(search.toLowerCase()) || client.name.toLowerCase().includes(search.toLowerCase())));
   };
 
   /* Avoid cumulating onClick listeners by using event delegation and handle the click outside of the component
@@ -62,15 +62,6 @@ const ClientSwitcher = () => {
     };
   }, [selectClient]);
 
-  // At first render, fetch available clients and store them in the clients state
-  useEffect(() => {
-    const fetchClients = async () => {
-      const clients = await getClients();
-      setClients(clients);
-    };
-    fetchClients();
-  }, []);
-
   // If a client is logged in, set the default select value of the input field to the logged in client
   useEffect(() => {
     if (loggedInClient) {
@@ -86,7 +77,7 @@ const ClientSwitcher = () => {
           <ChevronDownIcon
             onClick={(event) => {
               event.stopPropagation(); // Avoid triggering the click event listener on the document which would close the dropdown list
-              setClientsSearchResults(clientsSearchResults ? null : clients); // Toggle the dropdown list
+              setClientsSearchResults(clientsSearchResults ? null : clientList); // Toggle the dropdown list
             }}
           />
         </div>
