@@ -3,11 +3,11 @@ import Product from "@/interfaces/Product";
 /**
  * Retrieves a list of Product objects from the server using the Fetch API.
  * @async
- * @function getProduct
+ * @function getProducts
  * @returns {Promise<Product[]>} - A promise that resolves to an array of Product objects.
  * @throws {Error} - An error is thrown if the server response contains an error message.
  */
-export async function getProduct(): Promise<Product[]> {
+export async function getProducts(): Promise<Product[]> {
   return fetch(process.env.NEXT_PUBLIC_API_URL + "products", {
     method: "GET",
   })
@@ -25,4 +25,4 @@ export async function getProduct(): Promise<Product[]> {
     });
 }
 
-export default getProduct;
+export default getProducts;
