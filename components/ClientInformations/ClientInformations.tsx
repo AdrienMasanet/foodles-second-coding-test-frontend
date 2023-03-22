@@ -5,6 +5,9 @@ type ClientInformationsProps = {
   client: ConnectedClient;
 };
 
+/*
+ * Displays logged in client personal informations.
+ */
 const ClientInformations = ({ client }: ClientInformationsProps) => {
   return (
     <div className={styles.container}>
