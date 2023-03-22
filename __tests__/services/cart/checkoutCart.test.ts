@@ -14,12 +14,12 @@ describe("service | checkoutCart", () => {
     const cart = { "product-uuid-1": 1, "product-uuid-2": 2 };
 
     // Mock successful response from fetch
-    const mockResponse = {
+    const responseMock = {
       status: 200,
       json: () => Promise.resolve({ clientNewCreditsAmount: 50 }),
     };
 
-    fetchMock.mockResolvedValueOnce(mockResponse);
+    fetchMock.mockResolvedValueOnce(responseMock);
 
     const newCreditsAmount = await checkoutCart(cart);
 
@@ -31,12 +31,12 @@ describe("service | checkoutCart", () => {
     const cart = { "product-uuid-1": 1, "product-uuid-2": 2 };
 
     // Mock failed response from fetch
-    const mockResponse = {
+    const responseMock = {
       status: 400,
       json: () => Promise.resolve({ error: "Insufficient credits" }),
     };
 
-    fetchMock.mockResolvedValueOnce(mockResponse);
+    fetchMock.mockResolvedValueOnce(responseMock);
 
     try {
       await checkoutCart(cart);

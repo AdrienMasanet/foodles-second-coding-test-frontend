@@ -13,7 +13,7 @@ beforeEach(() => {
 describe("service | getProducts", () => {
   it("should return an array of Product objects on success", async () => {
     // Mock successful response from fetch
-    const mockProducts: Product[] = [
+    const productsMock: Product[] = [
       {
         id: "product-uuid-1",
         name: "Product 1",
@@ -35,13 +35,13 @@ describe("service | getProducts", () => {
     ];
 
     fetchMock.mockResolvedValueOnce({
-      json: () => Promise.resolve(mockProducts),
+      json: () => Promise.resolve(productsMock),
     });
 
     const productList = await getProducts();
 
     expect(fetch).toHaveBeenCalledTimes(1);
-    expect(productList).toEqual(mockProducts);
+    expect(productList).toEqual(productsMock);
   });
 
   it("should return an empty array if an error occurs", async () => {

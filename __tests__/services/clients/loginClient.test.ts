@@ -13,7 +13,7 @@ beforeEach(() => {
 describe("service | loginClient", () => {
   it("should return a ConnectedClient object on successful login", async () => {
     // Mock successful response from fetch
-    const mockLoggedInClient: ConnectedClient = {
+    const loggedInClientMock: ConnectedClient = {
       id: "client-uuid-1",
       name: "Client 1",
       email: "client1@example.com",
@@ -23,7 +23,7 @@ describe("service | loginClient", () => {
     };
 
     fetchMock.mockResolvedValueOnce({
-      json: () => Promise.resolve(mockLoggedInClient),
+      json: () => Promise.resolve(loggedInClientMock),
     });
 
     const clientId = "client-uuid-1";
@@ -41,7 +41,7 @@ describe("service | loginClient", () => {
         body: JSON.stringify({ id: clientId }),
       })
     );
-    expect(loggedInClient).toEqual(mockLoggedInClient);
+    expect(loggedInClient).toEqual(loggedInClientMock);
   });
 
   it("should return null if there's an error during login", async () => {

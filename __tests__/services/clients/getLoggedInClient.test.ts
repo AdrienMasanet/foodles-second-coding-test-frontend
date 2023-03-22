@@ -13,7 +13,7 @@ beforeEach(() => {
 describe("service | getLoggedInClient", () => {
   it("should return a ConnectedClient object if a client is logged in", async () => {
     // Mock successful response from fetch
-    const mockLoggedInClient: ConnectedClient = {
+    const loggedInClientMock: ConnectedClient = {
       id: "client-uuid-1",
       name: "Client 1",
       email: "client1@example.com",
@@ -23,13 +23,13 @@ describe("service | getLoggedInClient", () => {
     };
 
     fetchMock.mockResolvedValueOnce({
-      json: () => Promise.resolve(mockLoggedInClient),
+      json: () => Promise.resolve(loggedInClientMock),
     });
 
     const loggedInClient = await getLoggedInClient();
 
     expect(fetch).toHaveBeenCalledTimes(1);
-    expect(loggedInClient).toEqual(mockLoggedInClient);
+    expect(loggedInClient).toEqual(loggedInClientMock);
   });
 
   it("should return null if no client is logged in", async () => {
