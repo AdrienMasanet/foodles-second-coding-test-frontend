@@ -8,7 +8,7 @@ import ConnectedClient from "@/interfaces/ConnectedClient";
  * @returns {Promise<ConnectedClient | null>} A Promise that resolves with a ConnectedClient object or null if there's an error.
  * @throws {Error} An error object if there's an error returned from the server.
  */
-export async function loginClient(id: string): Promise<ConnectedClient | null> {
+async function loginClient(id: string): Promise<ConnectedClient | null> {
   return fetch(process.env.NEXT_PUBLIC_API_URL + "clients/login", {
     method: "POST",
     credentials: "include",

@@ -7,7 +7,7 @@ import Client from "@/interfaces/Client";
  * @returns {Promise<Client[]>} - A promise that resolves to an array of client objects
  * @throws {Error} - If an error occurs during the request or if the response contains an error message
  */
-export async function getClients(): Promise<Client[]> {
+async function getClients(): Promise<Client[]> {
   // CORS are enabled on the API server
   return fetch(process.env.NEXT_PUBLIC_API_URL + "clients", {
     method: "GET",

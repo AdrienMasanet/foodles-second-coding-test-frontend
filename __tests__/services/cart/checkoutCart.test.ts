@@ -1,5 +1,5 @@
 import fetchMock from "@/__mocks__/fetch";
-import { checkoutCart } from "@/services/cart/checkoutCart";
+import checkoutCart from "@/services/cart/checkoutCart";
 
 // Mocking fetch
 global.fetch = fetchMock;

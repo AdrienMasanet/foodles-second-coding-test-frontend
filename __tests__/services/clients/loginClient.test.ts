@@ -1,5 +1,5 @@
 import fetchMock from "@/__mocks__/fetch";
-import { loginClient } from "@/services/clients/loginClient";
+import loginClient from "@/services/clients/loginClient";
 import ConnectedClient from "@/interfaces/ConnectedClient";
 
 // Mock fetch

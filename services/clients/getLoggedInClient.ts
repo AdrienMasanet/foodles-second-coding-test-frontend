@@ -7,7 +7,7 @@ import ConnectedClient from "@/interfaces/ConnectedClient";
  * @returns {Promise<ConnectedClient | null>} A promise that resolves with a ConnectedClient object if a client is logged in, or null if no client is logged in.
  * @throws {Error} If the API returns an error message.
  */
-export async function getLoggedInClient(): Promise<ConnectedClient | null> {
+async function getLoggedInClient(): Promise<ConnectedClient | null> {
   return fetch(process.env.NEXT_PUBLIC_API_URL + "clients/loggedin", {
     method: "GET",
     credentials: "include",

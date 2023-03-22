@@ -1,5 +1,5 @@
 import fetchMock from "@/__mocks__/fetch";
-import { getProducts } from "@/services/products/getProducts";
+import getProducts from "@/services/products/getProducts";
 import Product from "@/interfaces/Product";
 
 // Mock fetch
