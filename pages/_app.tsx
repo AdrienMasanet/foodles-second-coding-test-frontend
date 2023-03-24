@@ -8,13 +8,6 @@ import { ClientListProvider } from "@/context/ClientListContext";
 import { ProductListProvider } from "@/context/ProductListContext";
 
 export default function App({ Component, pageProps }: AppProps) {
-  // This is a workaround for the self-signed certificate issue in development
-  if (process.env.NODE_ENV === "development") {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-  } else {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "1";
-  }
-
   return (
     <>
       <Head>

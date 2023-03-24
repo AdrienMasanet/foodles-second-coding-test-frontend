@@ -2,11 +2,15 @@
 
 ## How to use
 
-This project is using a custom server.js file to run a local server over HTTPS.
-You'll need to create a self-signed certificate to run the server, to do this you can use [mkcert](https://github.com/FiloSottile/mkcert).
-Generate the certificate and copy the 2 .pem files in the root of the project under a folder named `certs`.
-Rename the key file to `127.0.0.1-key.pem` and the certificate file to `127.0.0.1.pem`.
-Once done, you can run the server with the following command :
+Do not forget to set the environment variables in a .env.local file at the root of the project. You can use the .env.example file as a template.
+<br>
+Install the dependencies before running the project, if you're using npm, you can use the following command :
+
+```
+npm i
+```
+
+Then, you can run the project with :
 
 ```
 npm run dev
